@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Familiarizarme con el repo base",
+    "description": "Entender la estructura base y las dependencias",
+    "status": "completada"
+  },
+  {
+    "id": 2,
+    "title": "Replicar arquitectura",
+    "description": "Crear un proyecto nuevo y replicar la estructura de carpetas y componentes",
+    "status": "pendiente"
+  },
+  {
+    "id": 3,
+    "title": "Empezar a picar código",
+    "description": "Que Dios me ayude",
+    "status": "pendiente"
+  }
+]
