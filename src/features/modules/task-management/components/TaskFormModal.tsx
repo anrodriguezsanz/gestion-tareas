@@ -36,7 +36,6 @@ export const TaskFormModal = ({ isOpen, onClose }: Props) => {
         <Modal title="Nueva Tarea" open={isOpen} onCancel={onClose} footer={null}>
             <Form form={form} layout="vertical" onFinish={handleFinish}>
 
-                {/* rules={[{ required: true }]} cumple el requisito de "Validación básica" de tu enunciado */}
                 <Form.Item name="title" label="Título" rules={[{ required: true, message: 'Por favor, escribe un título' }]}>
                     <Input placeholder="Escribe aquí tu tarea" />
                 </Form.Item>

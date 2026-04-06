@@ -1,5 +1,10 @@
-import { atom } from 'jotai';
 import type { Task } from '../models/Task';
-import tasksData from '../services/tasks.json';
+import { atomWithStorage } from 'jotai/utils';
+import { atom } from 'jotai';
 
-export const tasksAtom = atom<Task[]>(tasksData as Task[]);
+export const tasksAtom = atomWithStorage<Task[]>('tasks-data', []);
+
+export const filterAtom = atom({
+  search: '',
+  status: 'todas'
+});
