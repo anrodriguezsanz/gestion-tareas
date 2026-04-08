@@ -1,10 +1,17 @@
 import type { Task } from '../models/Task';
-import { atomWithStorage } from 'jotai/utils';
 import { atom } from 'jotai';
+import { taskService } from '../services/TaskService';
 
-export const tasksAtom = atomWithStorage<Task[]>('tasks-data', []);
+export type FilterStatus = 'todas' | 'pendiente' | 'completada';
 
-export const filterAtom = atom({
+export interface Filters {
+  search: string;
+  status: FilterStatus;
+}
+
+export const tasksAtom = atom<Task[]>(taskService.getTasks());
+
+export const filterAtom = atom<Filters>({
   search: '',
   status: 'todas'
 });

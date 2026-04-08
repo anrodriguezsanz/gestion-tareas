@@ -4,11 +4,11 @@ import { TaskDetailsPage } from '../features/pages/task-details';
 
 export const router = createBrowserRouter([
   {
-    path: '/', // Cuando el usuario entre a la raíz de la web...
-    element: <TaskManagementPage /> // ...enséñale esta página
+    path: '/',
+    element: <TaskManagementPage /> 
   },
   {
-  path: '/task/:id', // El ":id" es un comodín (parámetro dinámico)
+  path: '/task/:id', 
   element: <TaskDetailsPage /> 
 }
 ]);

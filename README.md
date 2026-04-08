@@ -1,73 +1,97 @@
-# React + TypeScript + Vite
+# Gestión de Tareas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación de gestión de tareas construida con React, TypeScript y Jotai, siguiendo la arquitectura del proyecto real.
 
-Currently, two official plugins are available:
+## Stack Tecnológico
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18 con TypeScript
+- Jotai para estado global
+- Ant Design para componentes UI
+- React Router para navegación
+- Vite como build tool
+- Yarn como gestor de paquetes
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Requeridas**: 
 
-## Expanding the ESLint configuration
+- Listado de tareas en tabla
+- Filtrado por estado y título
+- Cambio de estado de tareas
+- Añadir nuevas tareas mediante formulario
+- Ver detalles de cada tarea
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Extra**: 
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Eliminar tareas
+- Persistencia en localStorage
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Estructura del Proyecto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── core/
+│   ├── router.tsx
+│   └── constants.ts
+├── features/
+│   ├── modules/
+│   │   └── task-management/
+│   │       ├── components/
+│   │       ├── hooks/
+│   │       ├── models/
+│   │       ├── services/
+│   │       └── utils/
+│   ├── pages/
+│   └── shared/
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Arquitectura
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+He intentado seguir una arquitectura similar a la del proyecto real, con separación de responsabilidades:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Models**: Definición de tipos e interfaces TypeScript
+- **Services**: Lógica y persistencia de datos
+- **Hooks**: Lógica reutilizable
+  - `useTaskOperations`: Operaciones CRUD
+  - `useTaskFilters`: Lógica de filtrado
+  - `useModal`: Control de modales
+- **Components**: Componentes UI
+- **Shared**: Componentes y hooks genéricos reutilizables
+
+## Decisiones técnicas
+
+### Persistencia con localStorage síncrono
+
+He optado por usar localStorage para la persistencia de datos en el navegador de forma síncrona.
+Estuve considerando usar herramientas como JSON Server o bien simular llamadas a una API con funciones
+asíncronas, pero añadía complejidad innecesaria al proyecto. 
+
+Tengo en cuenta que, en un proyecto real con backend, las funciones asíncronas serían necesarias.
+
+## Instalación y ejecución
+
+### Prerrequisitos
+- Node.js >= 18
+- Yarn >= 1.22
+
+### Instrucciones
+
+```bash
+# Clonar el repositorio
+git clone <https://github.com/anrodriguezsanz/gestion-tareas>
+cd gestion-tareas
+
+# Instalar dependencias
+yarn install
+
+# Ejecutar en modo desarrollo
+yarn dev
 ```
+
+La aplicación estará disponible en el puerto que indique la consola.
+
+
+## Autor
+
+Andrea Rodríguez

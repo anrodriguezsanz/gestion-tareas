@@ -1,39 +1,39 @@
 import { Modal, Form, Input, Select, Button } from 'antd';
-import { useAtom } from 'jotai';
-import { tasksAtom } from '../utils/store';
-import type { Task } from '../models/Task';
+import type { Task, TaskStatus } from '../../models/Task';
+import { STATUS_OPTIONS } from '../../../../../core/constants';
+import { TaskFormModalStyles as styles } from './styles';
 
-interface Props {
-    isOpen: boolean;
-    onClose: () => void;
+interface TaskFormValues {
+    title: string;
+    description: string;
+    status: TaskStatus;
 }
 
-export const TaskFormModal = ({ isOpen, onClose }: Props) => {
+interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onSubmit: (taskData: Omit<Task, 'id'>) => void;
+}
 
-    const [tasks, setTasks] = useAtom(tasksAtom);
+export const TaskFormModal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
+
     const [form] = Form.useForm();
 
     // Función que se ejecuta al pulsar el botón de guardar
-    const handleFinish = (values: any) => {
-        // Crea una nueva tarea con los datos del form
-        const newTask: Task = {
-            id: Date.now(), // Un truco rápido para generar un ID numérico único
+    const handleFinish = (values: TaskFormValues) => {
+        const taskData: Omit<Task, 'id'> = {
             title: values.title,
             description: values.description,
             status: values.status,
         };
-
-        // Añade la tarea a la lista de tareas que ya había
-        setTasks([...tasks, newTask]);
-
+        
         form.resetFields();
+        onSubmit(taskData);
         onClose();
-
     }
 
     return (
-
-        <Modal title="Nueva Tarea" open={isOpen} onCancel={onClose} footer={null}>
+        <Modal title="Nueva tarea" open={isOpen} onCancel={onClose} footer={null}>
             <Form form={form} layout="vertical" onFinish={handleFinish}>
 
                 <Form.Item name="title" label="Título" rules={[{ required: true, message: 'Por favor, escribe un título' }]}>
@@ -46,14 +46,11 @@ export const TaskFormModal = ({ isOpen, onClose }: Props) => {
 
                 <Form.Item name="status" label="Estado" initialValue="pendiente">
                     <Select
-                        options={[
-                            { value: 'pendiente', label: 'Pendiente' },
-                            { value: 'completada', label: 'Completada' }
-                        ]}
+                        options={STATUS_OPTIONS}
                     />
                 </Form.Item>
 
-                <Form.Item style={{ textAlign: 'right', marginBottom: 0 }}>
+                <Form.Item style={styles.submitButton}>
                     <Button type="primary" htmlType="submit">
                         Guardar Tarea
                     </Button>

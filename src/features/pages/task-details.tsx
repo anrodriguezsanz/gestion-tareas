@@ -1,37 +1,40 @@
-import { Card, Button, Tag, Typography } from 'antd';
-import { useAtomValue } from 'jotai';
-import { tasksAtom } from '../modules/task-management/utils/store';
+import { Card, Button, Typography } from 'antd';
 import { useParams, Link } from 'react-router-dom';
-
+import { HOME_PATH, TASK_NOT_FOUND } from '../../core/constants';
+import { taskManagementStyles as styles } from './styles';
+import { StatusTag } from '../modules/task-management/components/StatusTag/StatusTag';
+import { useTaskOperations } from '../modules/task-management/hooks/useTaskOperations';
 
 export const TaskDetailsPage = () => {
 
     const { Title, Paragraph } = Typography;
     const { id } = useParams();
-    const tasks = useAtomValue(tasksAtom);
-    const task = tasks.find(t => t.id === Number(id));
+    const { getTaskById } = useTaskOperations();
+    const task = getTaskById(Number(id));
 
     if (!task) {
-        return <p>No se ha podido encontrar la tarea</p>;
+        return <p>{TASK_NOT_FOUND}</p>;
     }
 
     return (
-        <>
-            <Card title={`Detalle de la tarea #${task.id}`}>
-                <Title level={2}>{task.title}</Title>
-                <Tag color={task.status === 'completada' ? 'green' : 'volcano'} >
-                    {task.status.toUpperCase()}
-                </Tag>
-                <Title level={4}>Descripción:</Title>
-                <Paragraph>{task.description || 'Sin descripción'}</Paragraph>
-            </Card>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '20px' }}>
-                <Link to={'/'}>
-                    <Button type="primary" size="large">
-                        Volver atrás
-                    </Button>
-                </Link>
+        <div style={styles.pageWrapper}>
+            <div style={styles.container}>
+                <Card title={`Detalle de la tarea #${task.id}`}>
+                    <Title level={2} style={styles.detailTitle}>{task.title}</Title>
+                    <div style={styles.detailTagWrapper}>
+                        <StatusTag status={task.status} />
+                    </div>
+                    <Title level={4} style={styles.detailSubtitle}>Descripción:</Title>
+                    <Paragraph>{task.description || 'Sin descripción'}</Paragraph>
+                </Card>
+                <div style={styles.detailBackButton}>
+                    <Link to={HOME_PATH}>
+                        <Button type="primary" size="large">
+                            Volver atrás
+                        </Button>
+                    </Link>
+                </div>
             </div>
-        </>
+        </div>
     )
 }
