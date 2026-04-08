@@ -1,4 +1,4 @@
-import { Space, Button, Modal } from 'antd';
+import { Space, Button, App } from 'antd';
 import { Link } from 'react-router-dom';
 import type { Task } from '../../models/Task';
 import { DETAILS_PATH, COMPLETED_STATUS, PENDING_STATUS } from '../../../../../core/constants';
@@ -11,8 +11,10 @@ interface ActionButtonsProps {
 
 export const ActionButtons = ({ record, onToggleStatus, onDelete }: ActionButtonsProps) => {
     
+    const { modal } = App.useApp();
+    
     const handleDelete = () => {
-        Modal.confirm({
+        modal.confirm({
             title: '¿Estás seguro de eliminar esta tarea?',
             content: `Se eliminará la tarea: "${record.title}"`,
             okText: 'Eliminar',
