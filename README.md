@@ -79,7 +79,7 @@ Tengo en cuenta que, en un proyecto real con backend, las funciones asíncronas 
 
 ```bash
 # Clonar el repositorio
-git clone <https://github.com/anrodriguezsanz/gestion-tareas>
+git clone <https://github.com/anrodriguezsanz/gestion-tareas.git>
 cd gestion-tareas
 
 # Instalar dependencias
