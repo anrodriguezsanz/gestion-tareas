@@ -1,7 +1,8 @@
 import { Space, Button, App } from 'antd';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import type { Task } from '../../models/Task';
-import { DETAILS_PATH, COMPLETED_STATUS, PENDING_STATUS } from '../../../../../core/constants';
+import { DETAILS_PATH, PENDING_STATUS } from '../../../../../core/constants';
 
 interface ActionButtonsProps {
     record: Task;
@@ -12,27 +13,32 @@ interface ActionButtonsProps {
 export const ActionButtons = ({ record, onToggleStatus, onDelete }: ActionButtonsProps) => {
     
     const { modal } = App.useApp();
+    const { t } = useTranslation();
     
     const handleDelete = () => {
         modal.confirm({
-            title: '¿Estás seguro de eliminar esta tarea?',
-            content: `Se eliminará la tarea: "${record.title}"`,
-            okText: 'Eliminar',
-            cancelText: 'Cancelar',
+            title: t('tasks.delete.confirmTitle'),
+            content: t('tasks.delete.confirmContent', { title: record.title }),
+            okText: t('tasks.delete.okText'),
+            cancelText: t('tasks.delete.cancelText'),
             onOk: () => onDelete(record.id),
         });
     };
 
+    const statusText = record.status === PENDING_STATUS 
+        ? t('tasks.status.completed').toLowerCase() 
+        : t('tasks.status.pending').toLowerCase();
+
     return (
         <Space size='small'>
             <Button type='primary' onClick={() => onToggleStatus(record.id)}>
-                Marcar como {record.status === PENDING_STATUS ? COMPLETED_STATUS.toLowerCase() : PENDING_STATUS.toLowerCase()}
+                {t('tasks.actions.markAs')} {statusText}
             </Button>
             <Link to={`${DETAILS_PATH}${record.id}`}>
-                <Button>Ver detalles</Button>
+                <Button>{t('tasks.actions.viewDetails')}</Button>
             </Link>
             <Button onClick={handleDelete}>
-                Eliminar
+                {t('tasks.actions.delete')}
             </Button>
         </Space>
     );

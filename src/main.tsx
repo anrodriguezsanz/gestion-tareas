@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './core/router';
 import { themeConfig } from './core/theme/theme'
 import { ConfigProvider, App } from 'antd';
+import './core/i18n/config.';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

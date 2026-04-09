@@ -8,6 +8,7 @@ Aplicación de gestión de tareas construida con React, TypeScript y Jotai, sigu
 - Jotai para estado global
 - Ant Design para componentes UI
 - React Router para navegación
+- i18next y react-i18next para internacionalización
 - Vite como build tool
 - Yarn como gestor de paquetes
 
@@ -25,12 +26,25 @@ Aplicación de gestión de tareas construida con React, TypeScript y Jotai, sigu
 
 - Eliminar tareas
 - Persistencia en localStorage
+- Internacionalización (i18n) con soporte para 3 idiomas:
+  - Español (ES)
+  - Catalán (CA)
+  - Inglés (EN)
+- Detección automática del idioma del navegador
+- Selector de idioma en navbar
 
 ## Estructura del Proyecto
 
 ```
 src/
 ├── core/
+│   ├── i18n/
+│   │   ├── locales/
+│   │   │   ├── es.json
+│   │   │   ├── ca.json
+│   │   │   └── en.json
+│   │   └── config.ts
+│   ├── theme/
 │   ├── router.tsx
 │   └── constants.ts
 ├── features/
@@ -43,6 +57,11 @@ src/
 │   │       └── utils/
 │   ├── pages/
 │   └── shared/
+│       ├── components/
+│       │   ├── Navbar/
+│       │   ├── LanguageSelector/
+│       │   └── FilterBar/
+│       └── hooks/
 └── main.tsx
 ```
 
@@ -68,6 +87,13 @@ Estuve considerando usar herramientas como JSON Server o bien simular llamadas a
 asíncronas, pero añadía complejidad innecesaria al proyecto. 
 
 Tengo en cuenta que, en un proyecto real con backend, las funciones asíncronas serían necesarias.
+
+### Internacionalización
+
+Internacionalización completa usando `react-i18next`:
+
+- **Detección automática**: Usa `i18next-browser-languagedetector` para detectar el idioma del navegador
+- **3 idiomas soportados**: Español, Catalán e Inglés
 
 ## Instalación y ejecución
 

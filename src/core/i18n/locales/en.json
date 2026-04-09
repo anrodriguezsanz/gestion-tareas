@@ -1,0 +1,61 @@
+{
+  "app": {
+    "title": "Task Management"
+  },
+  "tasks": {
+    "list": {
+      "title": "Task List",
+      "addButton": "Add Task",
+      "noTasks": "No tasks available"
+    },
+    "table": {
+      "columns": {
+        "title": "Title",
+        "description": "Description",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    },
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "all": "All"
+    },
+    "actions": {
+      "markAs": "Mark as",
+      "viewDetails": "View Details",
+      "delete": "Delete",
+      "back": "Go Back"
+    },
+    "form": {
+      "title": "New Task",
+      "fields": {
+        "title": "Title",
+        "titlePlaceholder": "Enter your task here",
+        "titleRequired": "Please enter a title",
+        "description": "Description",
+        "descriptionPlaceholder": "Task details...",
+        "status": "Status"
+      },
+      "submit": "Save Task"
+    },
+    "details": {
+      "title": "Task Details",
+      "descriptionLabel": "Description:",
+      "noDescription": "No description"
+    },
+    "delete": {
+      "confirmTitle": "Are you sure you want to delete this task?",
+      "confirmContent": "The task will be deleted: \"{{title}}\"",
+      "okText": "Delete",
+      "cancelText": "Cancel"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by title...",
+      "statusLabel": "Status"
+    }
+  },
+  "errors": {
+    "taskNotFound": "Task not found"
+  }
+}

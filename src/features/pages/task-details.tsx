@@ -1,40 +1,46 @@
 import { Card, Button, Typography } from 'antd';
 import { useParams, Link } from 'react-router-dom';
-import { HOME_PATH, TASK_NOT_FOUND } from '../../core/constants';
+import { useTranslation } from 'react-i18next';
+import { HOME_PATH } from '../../core/constants';
 import { taskManagementStyles as styles } from './styles';
 import { StatusTag } from '../modules/task-management/components/StatusTag/StatusTag';
+import { Navbar } from '../shared/components/Navbar/Navbar.tsx';
 import { useTaskOperations } from '../modules/task-management/hooks/useTaskOperations';
 
 export const TaskDetailsPage = () => {
 
     const { Title, Paragraph } = Typography;
+    const { t } = useTranslation();
     const { id } = useParams();
     const { getTaskById } = useTaskOperations();
     const task = getTaskById(Number(id));
 
     if (!task) {
-        return <p>{TASK_NOT_FOUND}</p>;
+        return <p>{t('errors.taskNotFound')}</p>;
     }
 
     return (
-        <div style={styles.pageWrapper}>
-            <div style={styles.container}>
-                <Card title={`Detalle de la tarea #${task.id}`}>
-                    <Title level={2} style={styles.detailTitle}>{task.title}</Title>
-                    <div style={styles.detailTagWrapper}>
-                        <StatusTag status={task.status} />
+        <>
+            <Navbar />
+            <div style={styles.pageWrapper}>
+                <div style={styles.container}>
+                    <Card title={`${t('tasks.details.title')} #${task.id}`}>
+                        <Title level={2} style={styles.detailTitle}>{task.title}</Title>
+                        <div style={styles.detailTagWrapper}>
+                            <StatusTag status={task.status} />
+                        </div>
+                        <Title level={4} style={styles.detailSubtitle}>{t('tasks.details.descriptionLabel')}</Title>
+                        <Paragraph>{task.description || t('tasks.details.noDescription')}</Paragraph>
+                    </Card>
+                    <div style={styles.detailBackButton}>
+                        <Link to={HOME_PATH}>
+                            <Button type="primary" size="large">
+                                {t('tasks.actions.back')}
+                            </Button>
+                        </Link>
                     </div>
-                    <Title level={4} style={styles.detailSubtitle}>Descripción:</Title>
-                    <Paragraph>{task.description || 'Sin descripción'}</Paragraph>
-                </Card>
-                <div style={styles.detailBackButton}>
-                    <Link to={HOME_PATH}>
-                        <Button type="primary" size="large">
-                            Volver atrás
-                        </Button>
-                    </Link>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

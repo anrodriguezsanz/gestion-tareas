@@ -1,6 +1,7 @@
 import { Modal, Form, Input, Select, Button } from 'antd';
+import { useTranslation } from 'react-i18next';
 import type { Task, TaskStatus } from '../../models/Task';
-import { STATUS_OPTIONS } from '../../../../../core/constants';
+import { getStatusOptions } from '../../../../../core/constants';
 import { TaskFormModalStyles as styles } from './styles';
 
 interface TaskFormValues {
@@ -18,6 +19,7 @@ interface ModalProps {
 export const TaskFormModal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
 
     const [form] = Form.useForm();
+    const { t } = useTranslation();
 
     // Función que se ejecuta al pulsar el botón de guardar
     const handleFinish = (values: TaskFormValues) => {
@@ -33,26 +35,30 @@ export const TaskFormModal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
     }
 
     return (
-        <Modal title="Nueva tarea" open={isOpen} onCancel={onClose} footer={null}>
+        <Modal title={t('tasks.form.title')} open={isOpen} onCancel={onClose} footer={null}>
             <Form form={form} layout="vertical" onFinish={handleFinish}>
 
-                <Form.Item name="title" label="Título" rules={[{ required: true, message: 'Por favor, escribe un título' }]}>
-                    <Input placeholder="Escribe aquí tu tarea" />
+                <Form.Item 
+                    name="title" 
+                    label={t('tasks.form.fields.title')} 
+                    rules={[{ required: true, message: t('tasks.form.fields.titleRequired') }]}
+                >
+                    <Input placeholder={t('tasks.form.fields.titlePlaceholder')} />
                 </Form.Item>
 
-                <Form.Item name="description" label="Descripción">
-                    <Input.TextArea rows={3} placeholder="Detalles de la tarea..." />
+                <Form.Item name="description" label={t('tasks.form.fields.description')}>
+                    <Input.TextArea rows={3} placeholder={t('tasks.form.fields.descriptionPlaceholder')} />
                 </Form.Item>
 
-                <Form.Item name="status" label="Estado" initialValue="pendiente">
+                <Form.Item name="status" label={t('tasks.form.fields.status')} initialValue="pendiente">
                     <Select
-                        options={STATUS_OPTIONS}
+                        options={getStatusOptions(t)}
                     />
                 </Form.Item>
 
                 <Form.Item style={styles.submitButton}>
                     <Button type="primary" htmlType="submit">
-                        Guardar Tarea
+                        {t('tasks.form.submit')}
                     </Button>
                 </Form.Item>
             </Form>

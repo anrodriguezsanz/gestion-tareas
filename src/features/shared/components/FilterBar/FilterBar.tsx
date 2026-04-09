@@ -1,4 +1,5 @@
 import { Space, Input, Select } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 interface SelectOption {
     value: string;
@@ -20,10 +21,12 @@ export const FilterBar = ({
     onSearchChange,
     onSelectChange
 }: FilterBarProps) => {
+    const { t } = useTranslation();
+    
     return (
         <Space>
             <Input
-                placeholder="Buscar por título..."
+                placeholder={t('tasks.filters.searchPlaceholder')}
                 value={searchValue}
                 onChange={(e) => onSearchChange(e.target.value)}
                 style={{ width: 250 }}

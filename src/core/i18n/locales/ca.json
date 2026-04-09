@@ -1,0 +1,60 @@
+{
+  "app": {
+    "title": "Gestió de tasques"
+  },
+  "tasks": {
+    "list": {
+      "addButton": "Afegir tasca",
+      "noTasks": "No hi ha tasques disponibles"
+    },
+    "table": {
+      "columns": {
+        "title": "Títol",
+        "description": "Descripció",
+        "status": "Estat",
+        "actions": "Accions"
+      }
+    },
+    "status": {
+      "pending": "Pendent",
+      "completed": "Completada",
+      "all": "Totes"
+    },
+    "actions": {
+      "markAs": "Marcar com",
+      "viewDetails": "Veure detalls",
+      "delete": "Eliminar",
+      "back": "Tornar enrere"
+    },
+    "form": {
+      "title": "Nova tasca",
+      "fields": {
+        "title": "Títol",
+        "titlePlaceholder": "Escriu aquí la teva tasca",
+        "titleRequired": "Si us plau, escriu un títol",
+        "description": "Descripció",
+        "descriptionPlaceholder": "Detalls de la tasca...",
+        "status": "Estat"
+      },
+      "submit": "Desar Tasca"
+    },
+    "details": {
+      "title": "Detall de la tasca",
+      "descriptionLabel": "Descripció:",
+      "noDescription": "Sense descripció"
+    },
+    "delete": {
+      "confirmTitle": "Estàs segur d'eliminar aquesta tasca?",
+      "confirmContent": "S'eliminarà la tasca: \"{{title}}\"",
+      "okText": "Eliminar",
+      "cancelText": "Cancel·lar"
+    },
+    "filters": {
+      "searchPlaceholder": "Cercar per títol...",
+      "statusLabel": "Estat"
+    }
+  },
+  "errors": {
+    "taskNotFound": "No s'ha pogut trobar la tasca"
+  }
+}

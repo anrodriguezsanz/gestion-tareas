@@ -2,7 +2,7 @@ import { themeConfig } from '../../core/theme/theme';
 
 export const taskManagementStyles = {
   pageWrapper: {
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 80px)',
     background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)',
     display: 'flex',
     alignItems: 'center',
@@ -16,6 +16,7 @@ export const taskManagementStyles = {
     background: '#ffffff',
     borderRadius: '12px',
     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+    position: 'relative' as const,
   },
   title: {
     margin: '0 0 40px 0',
