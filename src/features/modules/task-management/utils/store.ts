@@ -1,4 +1,4 @@
-import type { Task } from '../models/Task';
+import type { Task } from '../../../shared/models/Task';
 import { atom } from 'jotai';
 import { taskService } from '../services/TaskService';
 

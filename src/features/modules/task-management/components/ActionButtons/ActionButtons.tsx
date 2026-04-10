@@ -1,8 +1,8 @@
 import { Space, Button, App } from 'antd';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import type { Task } from '../../models/Task';
-import { DETAILS_PATH, PENDING_STATUS } from '../../../../../core/constants';
+import type { Task } from '../../../../shared/models/Task';
+import { DETAILS_PATH, PENDING_STATUS } from '../../../../shared/constants/constants';
 
 interface ActionButtonsProps {
     record: Task;

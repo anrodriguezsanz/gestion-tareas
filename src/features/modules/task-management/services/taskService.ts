@@ -1,6 +1,6 @@
 import tasksData from './tasks.json';
-import type { Task } from '../models/Task';
-import { STORAGE_KEY } from '../../../../core/constants';
+import type { Task } from '../../../shared/models/Task';
+import { STORAGE_KEY } from '../../../shared/constants/constants';
 
 export const taskService = {
   

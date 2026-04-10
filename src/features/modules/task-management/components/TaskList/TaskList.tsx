@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import { useTranslation } from 'react-i18next';
-import type { Task } from '../../models/Task';
-import { StatusTag } from '../StatusTag/StatusTag';
+import type { Task } from '../../../../shared/models/Task.ts';
+import { StatusTag } from '../../../../shared/components/StatusTag/StatusTag.tsx';
 import { ActionButtons } from '../ActionButtons/ActionButtons';
 
 interface TaskListProps {

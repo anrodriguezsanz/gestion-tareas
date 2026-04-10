@@ -8,7 +8,7 @@ export const router = createBrowserRouter([
     element: <TaskManagementPage /> 
   },
   {
-  path: '/task/:id', 
-  element: <TaskDetailsPage /> 
-}
+    path: '/task/:id', 
+    element: <TaskDetailsPage /> 
+  }
 ]);

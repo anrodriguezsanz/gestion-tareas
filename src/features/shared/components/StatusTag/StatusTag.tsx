@@ -1,6 +1,6 @@
 import { Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { COMPLETED_STATUS } from '../../../../../core/constants';
+import { COMPLETED_STATUS } from '../../constants/constants';
 
 export const StatusTag = ({ status }: { status: string }) => {
   const { t } = useTranslation();

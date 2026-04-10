@@ -1,7 +1,7 @@
 import { Modal, Form, Input, Select, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
-import type { Task, TaskStatus } from '../../models/Task';
-import { getStatusOptions } from '../../../../../core/constants';
+import type { Task, TaskStatus } from '../../../../shared/models/Task';
+import { getStatusOptions } from '../../constants/constants.tasks';
 import { TaskFormModalStyles as styles } from './styles';
 
 interface TaskFormValues {

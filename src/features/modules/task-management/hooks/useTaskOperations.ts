@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai';
 import { tasksAtom } from '../utils/store';
 import { taskService } from '../services/TaskService';
-import type { Task } from '../models/Task';
-import { COMPLETED_STATUS, PENDING_STATUS } from '../../../../core/constants';
+import type { Task } from '../../../shared/models/Task';
+import { COMPLETED_STATUS, PENDING_STATUS } from '../../../shared/constants/constants';
 
 export const useTaskOperations = () => {
 

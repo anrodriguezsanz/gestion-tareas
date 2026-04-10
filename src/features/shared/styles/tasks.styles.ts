@@ -1,4 +1,4 @@
-import { themeConfig } from '../../core/theme/theme';
+import { themeConfig } from '../../../core/theme/theme';
 
 export const taskManagementStyles = {
   pageWrapper: {
